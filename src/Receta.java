@@ -14,6 +14,8 @@ public class Receta {
         System.out.println("Receta creada");
     }
 
+    public Receta(){}
+
     public String getNombre() {
         return nombre;
     }
