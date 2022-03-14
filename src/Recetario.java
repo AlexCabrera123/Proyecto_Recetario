@@ -33,4 +33,13 @@ public class Recetario {
         this.autor = autor;
         this.titulo = titulo;
     }
+
+    public void mostrarRecetario(){
+        System.out.println(titulo);
+        System.out.println(autor);
+        for (Receta receta: recetas) {
+            receta.mostrarReceta();
+
+        }
+    }
 }
