@@ -34,6 +34,7 @@ public class Ingredientes {
         this.salado = salado;
         this.cantidad = cantidad;
         System.out.println("Ingrediente creado");
-
     }
+
+
 }

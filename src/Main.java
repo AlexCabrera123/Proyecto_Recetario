@@ -89,9 +89,17 @@ public class Main {
                 nueva.setTiempoPreparacion(leer.nextDouble());
                 System.out.println("Los ingredientes disponibles son;");
                 for (int i = 0; i < ingredientesDisp.size() ; i++) {
-                    System.out.println(i+1 + ". " + ingredientesDisp.get(i));
-
+                    System.out.println(i+1 + ". " + ingredientesDisp.get(i).getNombre());
                 }
+                ArrayList<Ingredientes> ingredientesReceta = new ArrayList<>();
+                System.out.println("Ingrese el número del ingrediente correspondiente y presione enter," +
+                        "si ya no quiere agregar más escriba 0");
+                do{
+                    if (respuesta != 0){
+                        ingredientesReceta.add(ingredientesDisp.get(respuesta-1));
+                    }
+                }while (respuesta != 0);
+                nueva.setIngredientes(ingredientesReceta);
                 break;
             case 3:
                 break;
