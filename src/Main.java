@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,6 +24,8 @@ public class Main {
         Ingredientes Jitomate = new Ingredientes("JITOMATE", true, 100);
         Ingredientes Aceitunas = new Ingredientes("ACEITUNAS", true, 75);
         Ingredientes PuredeTomate = new Ingredientes("PURE DE TOMATE", true, 150);
+        Ingredientes Agua = new Ingredientes("AGUA", false,100);
+
 
         //Guardar ingredientes en un array list
         ArrayList<Ingredientes> ingredientesDisp = new ArrayList<>(Arrays.asList(Levadura, Harina, Queso, Paprika, Pimiento, Jitomate, Aceitunas, PuredeTomate));
@@ -35,8 +38,65 @@ public class Main {
                 //Pasos
                 new ArrayList<>(Arrays.asList("Lavar los ingredientes",
                         "Cortar los ingredientes",
-                        "Mezclar la harina con la levadura")));
+                        "Mezclar agua tibia con la levadura",
+                        "Mezclar la harina con la levadura",
+                        "Amasar la mezcla hasta que quede uniforme",
+                        "Vertir el pure sobre la masa",
+                        "Agregar el queso y los ingredientes",
+                        "Poner al horno en 180º durante 25 min"))
+        );
+
         //Crear un recetario
+        //Guardar las recetas en el recetario
+        Recetario miRecetario = new Recetario(
+                new ArrayList<>(Arrays.asList(pizza)),
+                "Alex",
+                "Recetas caseras"
+        );
+
+        //Mostrar las opciones que el usuario tiene
+
+        System.out.println("Bienvenido, elige una opción");
+        System.out.println("1.- Agregar un ingrediente nuevo");
+        System.out.println("2.- Agregar una receta nueva");
+        System.out.println("3.- Ver el recetario");
+
+        Scanner leer = new Scanner(System.in);
+        int respuesta = 0;
+        respuesta = leer.nextInt();
+
+        switch (respuesta){
+            case 1:
+                Ingredientes nuevo = new Ingredientes();
+                System.out.println("Ingrese el nombre del ingrediente");
+                nuevo.setNombre(leer.next());
+                System.out.println("Ingrese la cantidad");
+                nuevo.setCantidad(leer.nextDouble());
+                System.out.println("¿Tú ingrediente es salado?  1.-SI \t 2.-NO");
+                if (leer.nextInt()==1) {
+                    nuevo.setSalado(true);
+                }else {
+                    nuevo.setSalado(false);
+                }
+                System.out.println("Ingrediente creado");
+                ingredientesDisp.add(nuevo);
+                break;
+            case 2:
+                Receta nueva = new Receta();
+                System.out.println("Ingrese el nombre de la receta");
+                nueva.setNombre(leer.next());
+                System.out.println("Ingrese el tiempo de preparación");
+                nueva.setTiempoPreparacion(leer.nextDouble());
+                System.out.println("Los ingredientes disponibles son;");
+                for (int i = 0; i < ingredientesDisp.size() ; i++) {
+                    System.out.println(i+1 + ". " + ingredientesDisp.get(i));
+
+                }
+                break;
+            case 3:
+                break;
+
+        }
 
 
 

@@ -27,6 +27,8 @@ public class Ingredientes {
         this.cantidad = cantidad;
     }
 
+    public Ingredientes(){};
+
     public Ingredientes(String nombre, boolean salado, double cantidad) {
         this.nombre = nombre;
         this.salado = salado;
