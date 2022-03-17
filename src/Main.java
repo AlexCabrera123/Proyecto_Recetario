@@ -17,7 +17,7 @@ public class Main {
         //QUE LA BANDERA SEA 0
 
         Ingredientes Levadura = new Ingredientes("LEVADURA", true, 500);
-        Ingredientes Harina = new Ingredientes(" HARINA", true, 500);
+        Ingredientes Harina = new Ingredientes("HARINA", true, 500);
         Ingredientes Queso = new Ingredientes("QUESO", true, 250);
         Ingredientes Paprika = new Ingredientes("PAPRIKA", true, 50);
         Ingredientes Pimiento = new Ingredientes("PIMIENTO", true, 100);
@@ -54,58 +54,75 @@ public class Main {
                 "Recetas caseras"
         );
 
-        //Mostrar las opciones que el usuario tiene
 
-        System.out.println("Bienvenido, elige una opción");
-        System.out.println("1.- Agregar un ingrediente nuevo");
-        System.out.println("2.- Agregar una receta nueva");
-        System.out.println("3.- Ver el recetario");
 
         Scanner leer = new Scanner(System.in);
         int respuesta = 0;
-        respuesta = leer.nextInt();
+        do {
+            //Mostrar las opciones que el usuario tiene
 
-        switch (respuesta){
-            case 1:
-                Ingredientes nuevo = new Ingredientes();
-                System.out.println("Ingrese el nombre del ingrediente");
-                nuevo.setNombre(leer.next());
-                System.out.println("Ingrese la cantidad");
-                nuevo.setCantidad(leer.nextDouble());
-                System.out.println("¿Tú ingrediente es salado?  1.-SI \t 2.-NO");
-                if (leer.nextInt()==1) {
-                    nuevo.setSalado(true);
-                }else {
-                    nuevo.setSalado(false);
-                }
-                System.out.println("Ingrediente creado");
-                ingredientesDisp.add(nuevo);
-                break;
-            case 2:
-                Receta nueva = new Receta();
-                System.out.println("Ingrese el nombre de la receta");
-                nueva.setNombre(leer.next());
-                System.out.println("Ingrese el tiempo de preparación");
-                nueva.setTiempoPreparacion(leer.nextDouble());
-                System.out.println("Los ingredientes disponibles son;");
-                for (int i = 0; i < ingredientesDisp.size() ; i++) {
-                    System.out.println(i+1 + ". " + ingredientesDisp.get(i).getNombre());
-                }
-                ArrayList<Ingredientes> ingredientesReceta = new ArrayList<>();
-                System.out.println("Ingrese el número del ingrediente correspondiente y presione enter," +
-                        "si ya no quiere agregar más escriba 0");
-                do{
-                    if (respuesta != 0){
-                        ingredientesReceta.add(ingredientesDisp.get(respuesta-1));
+            System.out.println("Bienvenido, elige una opción");
+            System.out.println("1.- Agregar un ingrediente nuevo");
+            System.out.println("2.- Agregar una receta nueva");
+            System.out.println("3.- Ver el recetario");
+            System.out.println("0.- Salir");
+            respuesta = leer.nextInt();
+            switch (respuesta) {
+                case 1:
+                    Ingredientes nuevo = new Ingredientes();
+                    System.out.println("Ingrese el nombre del ingrediente");
+                    nuevo.setNombre(leer.next());
+                    System.out.println("Ingrese la cantidad");
+                    nuevo.setCantidad(leer.nextDouble());
+                    System.out.println("¿Tú ingrediente es salado?  1.-SI \t 2.-NO");
+                    if (leer.nextInt() == 1) {
+                        nuevo.setSalado(true);
+                    } else {
+                        nuevo.setSalado(false);
                     }
-                }while (respuesta != 0);
-                nueva.setIngredientes(ingredientesReceta);
-                break;
-            case 3:
-                break;
+                    System.out.println("Ingrediente creado");
+                    ingredientesDisp.add(nuevo);
+                    break;
+                case 2:
+                    Receta nueva = new Receta();
+                    System.out.println("Ingrese el nombre de la receta");
+                    nueva.setNombre(leer.next());
+                    System.out.println("Ingrese el tiempo de preparación");
+                    nueva.setTiempoPreparacion(leer.nextDouble());
+                    System.out.println("Los ingredientes disponibles son;");
+                    for (int i = 0; i < ingredientesDisp.size(); i++) {
+                        System.out.println(i + 1 + ". " + ingredientesDisp.get(i).getNombre());
+                    }
+                    ArrayList<Ingredientes> ingredientesReceta = new ArrayList<>();
+                    System.out.println("Ingrese el número del ingrediente correspondiente y presione enter," +
+                            "si ya no quiere agregar más escriba 0");
+                    do {
+                        respuesta = leer.nextInt();
+                        if (respuesta != 0) {
+                            ingredientesReceta.add(ingredientesDisp.get(respuesta - 1));
+                        }
+                    } while (respuesta != 0);
+                    respuesta = 15;
+                    nueva.setIngredientes(ingredientesReceta);
+                    ArrayList<String> pasosReceta = new ArrayList<>();
+                    System.out.println("Ingrese los pasos de uno en uno y de enter, " + "si ya no quiere agregar más presione 0");
+                    String res = "";
+                    do {
+                        res = leer.nextLine();
+                        if (!res.equals("0")) {
+                            pasosReceta.add(res);
+                        }
+                    } while (!res.equals("0"));
+                    nueva.setPasos(pasosReceta);
+                    miRecetario.getRecetas().add(nueva);
+                    break;
+                case 3:
+                    miRecetario.mostrarRecetario();
+                    break;
+                    }
+                     }while(respuesta!=0);
 
-        }
-
+                    //nombreArraylist.remove(# indice);
 
 
 

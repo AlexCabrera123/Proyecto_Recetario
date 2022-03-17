@@ -50,7 +50,7 @@ public class Receta {
 
     public void mostarIngredientes(){
         for (int i=0; i<ingredientes.size(); i++){
-            System.out.println(i+1+ " - " +ingredientes.get(i));
+            System.out.println(i+1+ " - " +ingredientes.get(i).getNombre());
         }
     }
 
