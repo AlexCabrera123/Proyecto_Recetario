@@ -24,7 +24,7 @@ public class Main {
         Ingredientes Jitomate = new Ingredientes("JITOMATE", true, 100);
         Ingredientes Aceitunas = new Ingredientes("ACEITUNAS", true, 75);
         Ingredientes PuredeTomate = new Ingredientes("PURE DE TOMATE", true, 150);
-        Ingredientes Agua = new Ingredientes("AGUA", false,100);
+        Ingredientes Agua = new Ingredientes("AGUA", false, 100);
 
 
         //Guardar ingredientes en un array list
@@ -34,7 +34,7 @@ public class Main {
                 "PIZZA",
                 25,
                 //Ingredientes
-                new ArrayList<>(Arrays.asList(Levadura,Harina,Queso,Pimiento, Jitomate, Aceitunas, PuredeTomate)),
+                new ArrayList<>(Arrays.asList(Levadura, Harina, Queso, Pimiento, Jitomate, Aceitunas, PuredeTomate)),
                 //Pasos
                 new ArrayList<>(Arrays.asList("Lavar los ingredientes",
                         "Cortar los ingredientes",
@@ -55,7 +55,6 @@ public class Main {
         );
 
 
-
         Scanner leer = new Scanner(System.in);
         int respuesta = 0;
         do {
@@ -65,6 +64,8 @@ public class Main {
             System.out.println("1.- Agregar un ingrediente nuevo");
             System.out.println("2.- Agregar una receta nueva");
             System.out.println("3.- Ver el recetario");
+            System.out.println("4.- Eliminar ingrediente");
+            System.out.println("5.- Eliminar receta");
             System.out.println("0.- Salir");
             respuesta = leer.nextInt();
             switch (respuesta) {
@@ -119,13 +120,39 @@ public class Main {
                 case 3:
                     miRecetario.mostrarRecetario();
                     break;
+                case 4:
+
+                    int borrar = 0;
+                    for (int i = 0; i < ingredientesDisp.size(); i++) {
+                        System.out.println(i + 1 + ". " + ingredientesDisp.get(i).getNombre());
                     }
-                     }while(respuesta!=0);
+                    System.out.println("Ingrese el número del ingrediente que quiere eliminar y presione enter, " + "si ya no quiere eliminar más presione 0");
+                    do {
+                        borrar = leer.nextInt();
+                        if (borrar != 0) {
+                            ingredientesDisp.remove(ingredientesDisp.get(borrar - 1));
+                        }
+                    } while (borrar != 0);
+                    break;
+                case 5:
+                    int borrarReceta = 0;
+                    for (int i = 0; i < miRecetario.getRecetas().size(); i++) {
+                        System.out.println(i + 1 + ". " + miRecetario.getRecetas().get(i).getNombre());
+                    }
+                    System.out.println("Ingrese el número de la receta que quiere eliminar y presione enter, " + "si ya no quiere eliminar más presione 0");
+                    do {
+                        borrarReceta = leer.nextInt();
+                        if (borrarReceta != 0) {
+                            miRecetario.getRecetas().remove(miRecetario.getRecetas(borrarReceta));
+                        }
+                    } while (borrarReceta != 0);
+                    break;
 
-                    //nombreArraylist.remove(# indice);
+            }
+
+            //nombreArraylist.remove(# indice);
 
 
-
-
+        } while (respuesta != 0);
     }
 }
