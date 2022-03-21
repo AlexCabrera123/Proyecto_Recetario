@@ -143,7 +143,7 @@ public class Main {
                     do {
                         borrarReceta = leer.nextInt();
                         if (borrarReceta != 0) {
-                            miRecetario.getRecetas().remove(miRecetario.getRecetas(borrarReceta));
+                            miRecetario.getRecetas().remove(borrarReceta-1);
                         }
                     } while (borrarReceta != 0);
                     break;
